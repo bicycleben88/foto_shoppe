@@ -19,8 +19,10 @@ const Form = styled.form`
     padding: 1rem;
     background-color: transparent;
     border: none;
-    text-align: center;
     border-bottom: ${(props) => props.theme.border};
+    :focus {
+      outline: 0;
+    }
   }
 `;
 export default Form;
