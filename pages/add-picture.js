@@ -5,7 +5,7 @@ import Button from "../styles/Button";
 const AddPicture = (props) => {
   return (
     <div>
-      <h1>Let's add a picture!</h1>
+      <h1 style={{ fontSize: "5rem" }}>Let's add a picture!</h1>
       <Form>
         <label htmlFor="file">
           Image:{" "}
@@ -27,7 +27,7 @@ const AddPicture = (props) => {
         </label>
         <label htmlFor="description">
           Description:{" "}
-          <textarea
+          <input
             type="text"
             id="description"
             name="description"

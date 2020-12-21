@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+// import Curtains from "../public/Red_room.jpg";
 
 const theme = {
   bloodRed: "#8a0303",
@@ -13,6 +14,13 @@ const theme = {
 
 const Container = styled.div`
   color: ${(props) => props.theme.black};
+  background-color: rgba(138, 3, 3, 0.4);
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  overflow: hidden;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -27,13 +35,18 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 10px;
-    width: 95%;
-    margin: 0 auto;
+    position: relative;
+    min-height: 100%;
+    background-image: url('https://i.imgur.com/o9V3d5W.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   h1, h2, h3, h4, h5, h6{
     font-family: 'Langar', cursive;
   }
   body {
+    height: 100%;
+    margin: 0 auto;
     color: ${theme.black};
     font-family: 'Open Sans Condensed', sans-serif;
     line-height: 1.5rem;

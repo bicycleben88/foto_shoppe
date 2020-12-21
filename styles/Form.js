@@ -6,18 +6,21 @@ const Form = styled.form`
   justify-content: space-around;
   width: 50%;
   min-height: 300px;
+  padding: 2rem;
   margin: 0.5rem auto;
   background-color: bisque;
-  box-shadow: 0px 1px 5px 1px darkred;
+  box-shadow: ${(props) => props.theme.shadow};
   label {
-    display: block;
+    display: flex;
+    justify-content: space-between;
   }
-  input,
-  textarea {
-    width: 100%;
-  }
-  button {
-    width: 100px;
+  input {
+    width: 80%;
+    padding: 1rem;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    border-bottom: ${(props) => props.theme.border};
   }
 `;
 export default Form;
