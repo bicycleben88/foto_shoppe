@@ -1,21 +1,31 @@
 import React from "react";
-import { GlobalContext } from "../_app";
+import Container from "../../styles/AlbumsPage";
+import Button from "../../styles/Button";
 
-const Index = (props) => {
-  const { globalState } = React.useContext(GlobalContext);
-  const { url } = globalState;
-  const [albums, setAlbums] = React.useState(null);
-
-  const getAlbums = async () => {
-    const response = await fetch(`${url}/albums/`);
-    const data = await response.json();
-    setAlbums(data);
-  };
-
-  React.useEffect(() => {
-    getAlbums();
-  }, []);
-  return <h1>index page</h1>;
+const Index = ({ albums }) => {
+  return (
+    <Container>
+      <h1>Check Out These Albums:</h1>
+      {albums.albums.map((album) => (
+        <div className="album" key={album.id}>
+          <h2>{album.name}</h2>
+          <h3>{album.description}</h3>
+          <Button>Add Pictures</Button>
+          <Button>Delete Album</Button>
+        </div>
+      ))}
+    </Container>
+  );
 };
 
 export default Index;
+
+export async function getStaticProps() {
+  const response = await fetch(`http://localhost:3000/api/albums/`);
+  const albums = await response.json();
+  return {
+    props: {
+      albums,
+    },
+  };
+}

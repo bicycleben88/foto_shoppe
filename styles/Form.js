@@ -13,6 +13,7 @@ const Form = styled.form`
   label {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
   }
   input {
     width: 80%;
@@ -23,6 +24,11 @@ const Form = styled.form`
     :focus {
       outline: 0;
     }
+  }
+  input[type="file"] {
+    border: none;
+    padding: 0;
+    width: auto;
   }
 `;
 export default Form;
