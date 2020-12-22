@@ -1,6 +1,8 @@
+import React from "react";
 import "../styles/globals.css";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-// import Curtains from "../public/Red_room.jpg";
+
+export const GlobalContext = React.createContext(null);
 
 const theme = {
   bloodRed: "#8a0303",
@@ -58,13 +60,18 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function MyApp({ Component, pageProps }) {
+  const [globalState, setGlobalState] = React.useState({
+    url: "http://localhost:3000/api",
+  });
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ThemeProvider>
+    <GlobalContext.Provider value={{ globalState, setGlobalState }}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+      </ThemeProvider>
+    </GlobalContext.Provider>
   );
 }
 

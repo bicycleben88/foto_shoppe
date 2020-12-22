@@ -1,8 +1,11 @@
 import React from "react";
+import { GlobalContext } from "../_app";
 import Form from "../../styles/Form";
 import Button from "../../styles/Button";
 
 const AddAlbum = (props) => {
+  const { globalState } = React.useContext(GlobalContext);
+  const { url } = globalState;
   const [album, setAlbum] = React.useState({
     name: "",
     description: "",
@@ -14,7 +17,7 @@ const AddAlbum = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("http://localhost:3000/api/albums/create", {
+    const response = await fetch(`${url}/albums/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +25,6 @@ const AddAlbum = (props) => {
       body: JSON.stringify(album),
     });
     const data = await response.json();
-    console.log(data);
   };
 
   return (
