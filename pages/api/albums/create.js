@@ -11,11 +11,11 @@ export default async (req, res) => {
         description: description,
       },
     });
-    res.statusCode = 200;
+    res.statusCode = 201;
     res.json({ album });
   } catch (error) {
     res.statusCode = 500;
-    res.json({ error: error });
+    res.json({ error: "Couldn't Create Album" });
   } finally {
     await prisma.$disconnect();
   }
