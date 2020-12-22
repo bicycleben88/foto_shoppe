@@ -30,7 +30,6 @@ const AddPicture = (props) => {
       }
     );
     const image = await response.json();
-    console.log(image);
     setPicture({ ...picture, image: image.secure_url });
   };
 
