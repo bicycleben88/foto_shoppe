@@ -1,6 +1,6 @@
 import React from "react";
-import Form from "../styles/Form";
-import Button from "../styles/Button";
+import Form from "../../styles/Form";
+import Button from "../../styles/Button";
 
 const AddPicture = (props) => {
   const [picture, setPicture] = React.useState({
