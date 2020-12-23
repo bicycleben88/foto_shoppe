@@ -1,12 +1,14 @@
 import React from "react";
 import { GlobalContext } from "../_app";
-import Form from "../../styles/Form";
-import Button from "../../styles/Button";
+import Form from "../../components/styles/Form";
+import Button from "../../components/styles/Button";
+import Container from "../../components/styles/AlbumsShow";
 
 const Album = ({ albumData }) => {
   const { globalState } = React.useContext(GlobalContext);
   const { url } = globalState;
   const { album } = albumData;
+
   const [picture, setPicture] = React.useState({
     name: "",
     description: "",
@@ -28,7 +30,22 @@ const Album = ({ albumData }) => {
       body: JSON.stringify(picture),
     });
     const data = await response.json();
-    console.log(data);
+    setPicture({
+      ...picture,
+      name: "",
+      description: "",
+      image: "",
+    });
+  };
+
+  const handleDelete = async (pictureId) => {
+    await fetch(`${url}/pictures/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: pictureId }),
+    });
   };
 
   const uploadImage = async (event) => {
@@ -52,12 +69,22 @@ const Album = ({ albumData }) => {
   };
 
   return (
-    <div>
+    <Container>
       <div>
         <h1>{album.name}</h1>
+        {album.pictures.map((picture) => {
+          return (
+            <div className="picture" key={picture.id}>
+              <h2>{picture.name}</h2>
+              <p>{picture.description}</p>
+              <img src={picture.image} alt={picture.name} />
+              <Button onClick={() => handleDelete(picture.id)}>Delete</Button>
+            </div>
+          );
+        })}
       </div>
       <Form>
-        <h1 style={{ fontSize: "5rem" }}>Let's add a picture!</h1>
+        <h1>Add a picture!</h1>
         <label htmlFor="file" className="file">
           Image:{" "}
           <input
@@ -97,7 +124,7 @@ const Album = ({ albumData }) => {
           Add to Album!
         </Button>
       </Form>
-    </div>
+    </Container>
   );
 };
 
