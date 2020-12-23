@@ -7,6 +7,7 @@ const Album = ({ albumData }) => {
   const { globalState } = React.useContext(GlobalContext);
   const { url } = globalState;
   const { album } = albumData;
+
   const [picture, setPicture] = React.useState({
     name: "",
     description: "",
@@ -28,7 +29,16 @@ const Album = ({ albumData }) => {
       body: JSON.stringify(picture),
     });
     const data = await response.json();
-    console.log(data);
+  };
+
+  const handleDelete = async (pictureId) => {
+    await fetch(`${url}/pictures/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: pictureId }),
+    });
   };
 
   const uploadImage = async (event) => {
@@ -55,6 +65,14 @@ const Album = ({ albumData }) => {
     <div>
       <div>
         <h1>{album.name}</h1>
+        {album.pictures.map((picture) => {
+          return (
+            <div>
+              <h2>{picture.name}</h2>
+              <Button onClick={() => handleDelete(picture.id)}>Delete</Button>
+            </div>
+          );
+        })}
       </div>
       <Form>
         <h1 style={{ fontSize: "5rem" }}>Let's add a picture!</h1>
