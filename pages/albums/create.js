@@ -1,11 +1,10 @@
 import React from "react";
-import { GlobalContext } from "../_app";
-import Form from "../../styles/Form";
-import Button from "../../styles/Button";
+import { useRouter } from "next/router";
+import Form from "../../components/styles/Form";
+import Button from "../../components/styles/Button";
 
 const AddAlbum = (props) => {
-  const { globalState } = React.useContext(GlobalContext);
-  const { url } = globalState;
+  const router = useRouter();
   const [album, setAlbum] = React.useState({
     name: "",
     description: "",
@@ -17,7 +16,7 @@ const AddAlbum = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch(`${url}/albums/create`, {
+    const response = await fetch(`/api/albums/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +24,7 @@ const AddAlbum = (props) => {
       body: JSON.stringify(album),
     });
     const data = await response.json();
+    router.push("/albums/");
   };
 
   return (
