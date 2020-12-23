@@ -1,8 +1,11 @@
 import React from "react";
-import "../styles/globals.css";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import { QueryClient, QueryClientProvider } from "react-query";
+import "../components/styles/globals.css";
 
 export const GlobalContext = React.createContext(null);
+
+const queryClient = new QueryClient();
 
 const theme = {
   bloodRed: "#8a0303",
@@ -64,14 +67,16 @@ function MyApp({ Component, pageProps }) {
     url: "http://localhost:3000/api",
   });
   return (
-    <GlobalContext.Provider value={{ globalState, setGlobalState }}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-      </ThemeProvider>
-    </GlobalContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <GlobalContext.Provider value={{ globalState, setGlobalState }}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Container>
+            <Component {...pageProps} />
+          </Container>
+        </ThemeProvider>
+      </GlobalContext.Provider>
+    </QueryClientProvider>
   );
 }
 
