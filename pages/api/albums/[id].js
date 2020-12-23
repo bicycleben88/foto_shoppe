@@ -13,6 +13,9 @@ export default async (req, res) => {
       where: {
         id: parseInt(id),
       },
+      include: {
+        pictures: true,
+      },
     });
     res.statusCode = 200;
     res.json({ album });
