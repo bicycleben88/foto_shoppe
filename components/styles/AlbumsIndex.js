@@ -9,6 +9,9 @@ const AlbumsContainer = styled.div`
     height: 500px;
     background-color: ${(props) => props.theme.white};
   }
+  form {
+    max-height: 500px;
+  }
 `;
 
 export default AlbumsContainer;
