@@ -1,7 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Button from "../../components/styles/Button";
-import Container from "../../components/styles/AlbumsShow";
+import Link from "next/link";
+import Image from "next/image";
+import Button from "../../../components/styles/Button";
+import Container from "../../../components/styles/AlbumsShow";
 
 const Album = ({ albumData }) => {
   const { album } = albumData;
@@ -20,15 +22,34 @@ const Album = ({ albumData }) => {
 
   return (
     <Container>
-      <div>
+      <header>
         <h1>{album.name}</h1>
-        <Button onClick={() => handleDelete(album.id)}>Delete Album</Button>
+        <div className="links">
+          <Link href={`/albums/${album.id}/addPicture`}>
+            <a>
+              <button>Add A Picture</button>
+            </a>
+          </Link>
+          <Link href={`/albums/${album.id}/edit`}>
+            <a>
+              <button>Edit Album</button>
+            </a>
+          </Link>
+          <button onClick={() => handleDelete(album.id)}>Delete Album</button>
+        </div>
+      </header>
+      <div>
         {album.pictures.map((picture) => {
           return (
             <div className="picture" key={picture.id}>
               <h2>{picture.name}</h2>
               <p>{picture.description}</p>
-              <img src={picture.image} alt={picture.name} />
+              <Image
+                src={picture.image}
+                alt={picture.name}
+                width={500}
+                height={640}
+              />
             </div>
           );
         })}

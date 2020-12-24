@@ -1,8 +1,8 @@
 import React from "react";
-import Form from "../../styles/Form";
-import Button from "../../styles/Button";
+import Form from "../../../components/styles/Form";
+import Button from "../../../components/styles/Button";
 
-const AddPicture = (props) => {
+export default function AddPicture() {
   const [picture, setPicture] = React.useState({
     name: "",
     description: "",
@@ -11,6 +11,19 @@ const AddPicture = (props) => {
 
   const handleChange = (event) => {
     setPicture({ ...picture, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch(`/api/pictures/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(picture),
+    });
+    const data = response.json();
+    console.log(data);
   };
 
   const uploadImage = async (event) => {
@@ -72,10 +85,10 @@ const AddPicture = (props) => {
             placeholder="Give Your Photo a Description"
           />
         </label>
-        <Button type="submit">Add to Album!</Button>
+        <Button type="submit" onClick={(event) => handleSubmit(event)}>
+          Add to Album!
+        </Button>
       </Form>
     </div>
   );
-};
-
-export default AddPicture;
+}
