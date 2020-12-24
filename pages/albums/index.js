@@ -1,5 +1,6 @@
 import React from "react";
-import { useQuery, useMutation, queryCache } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import Link from "next/link";
 import Form from "../../components/styles/Form";
 import Container from "../../components/styles/AlbumsIndex";
 import Button from "../../components/styles/Button";
@@ -23,11 +24,13 @@ async function createAlbum(newAlbum) {
 }
 
 export default function Index() {
+  const queryClient = useQueryClient();
+
   const { data: albums, error } = useQuery("albums", getAlbums);
 
   const { mutate } = useMutation(createAlbum, {
-    onSuccess: () => {
-      queryCache.refetchQueries("albums");
+    onSuccess: async function () {
+      await queryClient.refetchQueries();
     },
   });
 
@@ -59,10 +62,12 @@ export default function Index() {
         {albums &&
           albums.map((album) => (
             <div className="album" key={album.id}>
-              <h2>{album.name}</h2>
+              <Link href={`/albums/${album.id}`}>
+                <a>
+                  <h2>{album.name}</h2>
+                </a>
+              </Link>
               <h3>{album.description}</h3>
-              <Button>Add Pictures</Button>
-              <Button>Delete Album</Button>
             </div>
           ))}
       </div>

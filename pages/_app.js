@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "../components/styles/globals.css";
 
 export const GlobalContext = React.createContext(null);
@@ -76,6 +77,7 @@ function MyApp({ Component, pageProps }) {
           </Container>
         </ThemeProvider>
       </GlobalContext.Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

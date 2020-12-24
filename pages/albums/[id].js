@@ -1,31 +1,34 @@
 import React from "react";
+import { useRouter } from "next/router";
 import Button from "../../components/styles/Button";
 import Container from "../../components/styles/AlbumsShow";
 
 const Album = ({ albumData }) => {
   const { album } = albumData;
+  const router = useRouter();
 
-  const handleDelete = async (pictureId) => {
-    await fetch(`${url}/pictures/delete`, {
+  const handleDelete = async (albumId) => {
+    await fetch(`/api/albums/delete`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: pictureId }),
+      body: JSON.stringify({ id: albumId }),
     });
+    router.push("/albums");
   };
 
   return (
     <Container>
       <div>
         <h1>{album.name}</h1>
+        <Button onClick={() => handleDelete(album.id)}>Delete Album</Button>
         {album.pictures.map((picture) => {
           return (
             <div className="picture" key={picture.id}>
               <h2>{picture.name}</h2>
               <p>{picture.description}</p>
               <img src={picture.image} alt={picture.name} />
-              <Button onClick={() => handleDelete(picture.id)}>Delete</Button>
             </div>
           );
         })}
