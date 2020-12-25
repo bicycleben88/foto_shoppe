@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "Langar", cursive;
+  src: url("https://fonts.googleapis.com/css2?family=Langar&display=swap");
+}
+@font-face {
+  font-family: "Open Sans Condensed", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
+}
+:root {
+  --black: #190901;
+  --bloodRed: #8a0303;
+  --burntOrange: #de4905;
+  --grey: #c7c5c2;
+  --white: #fafafa;
+  --border: 2px solid #de4905;
+  --shadow: 1px 1px 1px 0 #190901;
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 10px;
+  background-color: var(--black);
+  width: 95%;
+  margin: 0 auto;
+}
+h1 {
+  font-family: "Langar", cursive;
+}
+body {
+  height: 100%;
+  color: var(--black);
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 1.5rem;
+}
+a {
+  text-decoration: none;
+  color: var(--black);
+}
