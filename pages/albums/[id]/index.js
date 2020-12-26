@@ -7,6 +7,12 @@ import Image from "next/image";
 import Button from "../../../components/styles/Button";
 import Container from "../../../components/styles/AlbumsShow";
 
+async function getAlbum(albumId) {
+  const response = await fetch(`http://localhost:3000/api/albums/${albumId}`);
+  const { album } = await response.json();
+  return album;
+}
+
 async function createPicture(pictureData) {
   const response = await fetch(`/api/pictures/create`, {
     method: "POST",
@@ -19,6 +25,42 @@ async function createPicture(pictureData) {
   return picture;
 }
 
+async function deletePicture(pictureId) {
+  await fetch(`/api/pictures/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(pictureId),
+  });
+}
+
+export async function getStaticPaths() {
+  const response = await fetch(`http://localhost:3000/api/albums`);
+  const data = await response.json();
+  const paths = [];
+  data.albums.map((album) => {
+    paths.push({
+      params: {
+        id: album.id.toString(),
+      },
+    });
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const albumData = await getAlbum(params.id);
+  return {
+    props: {
+      albumData,
+    },
+  };
+}
+
 const Album = ({ albumData }) => {
   const queryClient = useQueryClient();
 
@@ -26,9 +68,18 @@ const Album = ({ albumData }) => {
     await queryClient.refetchQueries();
   };
 
-  const { album } = albumData;
+  // const [album, setAlbum] = React.useState(albumData);
+  // console.log(album);
 
-  const createPictureMutation = useMutation(createPicture);
+  // const { data } = useQuery("album", getAlbum, {
+  //   initialData: albumData,
+  // });
+
+  const createPictureMutation = useMutation(createPicture, {
+    // onSuccess: refetchQuery(),
+  });
+
+  const deletePictureMutation = useMutation(deletePicture);
 
   const [picture, setPicture] = React.useState({
     name: "",
@@ -67,14 +118,26 @@ const Album = ({ albumData }) => {
       name: picture.name,
       description: picture.description,
       image: picture.image,
-      albumId: album.id,
+      albumId: albumData.id,
     });
     setPicture({
       name: "",
       description: "",
       image: "",
     });
+    // await updateAlbum(albumData.id);
   };
+
+  const useDeletePicture = (pictureId) => {
+    deletePictureMutation.mutate({
+      id: pictureId,
+    });
+  };
+
+  // const updateAlbum = async (id) => {
+  //   const updatedAlbum = await getAlbum(id);
+  //   await setAlbum(updatedAlbum);
+  // };
 
   return (
     <Container>
@@ -120,7 +183,7 @@ const Album = ({ albumData }) => {
         </Button>
       </Form>
       <div>
-        {album.pictures.map((picture) => {
+        {albumData.pictures.map((picture) => {
           return (
             <div className="picture" key={picture.id}>
               <h2>{picture.name}</h2>
@@ -131,6 +194,9 @@ const Album = ({ albumData }) => {
                 width={500}
                 height={640}
               />
+              <Button onClick={() => useDeletePicture(picture.id)}>
+                Delete
+              </Button>
             </div>
           );
         })}
@@ -140,30 +206,3 @@ const Album = ({ albumData }) => {
 };
 
 export default Album;
-
-export async function getStaticPaths() {
-  const response = await fetch(`http://localhost:3000/api/albums`);
-  const data = await response.json();
-  const paths = [];
-  data.albums.map((album) => {
-    paths.push({
-      params: {
-        id: album.id.toString(),
-      },
-    });
-  });
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params }) {
-  const response = await fetch(`http://localhost:3000/api/albums/${params.id}`);
-  const albumData = await response.json();
-  return {
-    props: {
-      albumData,
-    },
-  };
-}

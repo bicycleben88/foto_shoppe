@@ -28,13 +28,6 @@ const Form = styled.form`
   button {
     display: inline-block;
     margin: 0 auto;
-    color: ${(props) => props.theme.black};
-    :hover {
-      background-color: transparent;
-    }
-    :hover::before {
-      background-color: ${(props) => props.theme.black};
-    }
   }
 `;
 export default Form;

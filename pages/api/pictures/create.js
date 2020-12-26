@@ -2,11 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 export default async (req, res) => {
   const prisma = new PrismaClient({ log: ["query"] });
-  // const {
-  //   query: { id },
-  // } = req;
 
-  // res.json({ id: id });
   try {
     const { name, description, image, albumId } = req.body;
     const albumWithPictue = await prisma.album.update({
