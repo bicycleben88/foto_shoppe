@@ -3,8 +3,8 @@ import styled from "styled-components";
 const AlbumsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  box-shadow: ${(props) => props.theme.shadow};
   .album {
+    box-sizing: border-box;
     width: 100%;
     height: auto;
     padding: 2rem;
