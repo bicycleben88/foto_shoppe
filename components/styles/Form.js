@@ -9,7 +9,7 @@ const Form = styled.form`
   padding: 2rem;
   margin: 0.5rem auto;
   background-color: bisque;
-  box-shadow: ${(props) => props.theme.shadow};
+  box-sizing: border-box;
   label {
     display: flex;
     justify-content: space-between;

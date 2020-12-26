@@ -23,15 +23,31 @@ async function createAlbum(newAlbum) {
   return album;
 }
 
+async function deleteAlbum(albumId) {
+  await fetch(`/api/albums/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(albumId),
+  });
+}
+
 export default function Index() {
   const queryClient = useQueryClient();
 
+  const refetchQuery = async () => {
+    await queryClient.refetchQueries();
+  };
+
   const { data: albums, error } = useQuery("albums", getAlbums);
 
-  const { mutate } = useMutation(createAlbum, {
-    onSuccess: async function () {
-      await queryClient.refetchQueries();
-    },
+  const mutationCreateAlbum = useMutation(createAlbum, {
+    onSuccess: refetchQuery(),
+  });
+
+  const mutationDeleteAlbum = useMutation(deleteAlbum, {
+    onSuccess: refetchQuery(),
   });
 
   const [formData, setFormData] = React.useState({
@@ -45,13 +61,19 @@ export default function Index() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    mutate({
+    mutationCreateAlbum.mutate({
       name: formData.name,
       description: formData.description,
     });
     setFormData({
       name: "",
       description: "",
+    });
+  };
+
+  const useDeleteMutation = (albumId) => {
+    mutationDeleteAlbum.mutate({
+      id: albumId,
     });
   };
 
@@ -95,6 +117,9 @@ export default function Index() {
                 </a>
               </Link>
               <h3>{album.description}</h3>
+              <Button onClick={() => useDeleteMutation(album.id)}>
+                Delete
+              </Button>
             </div>
           ))}
       </div>

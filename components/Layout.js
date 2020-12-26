@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
 
-const Page = styled.div``;
+const Page = styled.div`
+  margin: 0 auto;
+  /* box-sizing: border-box; */
+`;
 const InnerPage = styled.div`
+  margin: 0 auto;
   height: 100%;
   width: 95%;
   .background-image {
