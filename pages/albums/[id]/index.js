@@ -27,15 +27,15 @@ const Album = ({ albumData }) => {
         <div className="links">
           <Link href={`/albums/${album.id}/addPicture`}>
             <a>
-              <button>Add A Picture</button>
+              <Button>Add A Picture</Button>
             </a>
           </Link>
           <Link href={`/albums/${album.id}/edit`}>
             <a>
-              <button>Edit Album</button>
+              <Button>Edit Album</Button>
             </a>
           </Link>
-          <button onClick={() => handleDelete(album.id)}>Delete Album</button>
+          <Button onClick={() => handleDelete(album.id)}>Delete Album</Button>
         </div>
       </header>
       <div>

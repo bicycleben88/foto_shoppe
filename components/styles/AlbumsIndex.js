@@ -2,15 +2,24 @@ import styled from "styled-components";
 
 const AlbumsContainer = styled.div`
   display: flex;
-  width: 95%;
+  flex-direction: column;
   box-shadow: ${(props) => props.theme.shadow};
   .album {
-    width: 300px;
-    height: 500px;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    text-align: center;
     background-color: ${(props) => props.theme.white};
+    margin-bottom: 0.5rem;
   }
-  form {
-    max-height: 500px;
+  button {
+    color: ${(props) => props.theme.black};
+    :hover {
+      background-color: transparent;
+    }
+    :hover::before {
+      background-color: ${(props) => props.theme.black};
+    }
   }
 `;
 

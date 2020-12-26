@@ -12,33 +12,16 @@ const AlbumContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     color: ${(props) => props.theme.white};
     .links {
       display: flex;
-      button {
-        background-color: transparent;
-        color: ${(props) => props.theme.white};
-        border: none;
-        padding: 0.5rem;
-        font-size: 2rem;
-        position: relative;
-        ::before {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 0.1rem;
-          bottom: 0;
-          left: 0;
-          background-color: ${(props) => props.theme.white};
-          visibility: hidden;
-          transform: scaleX(0);
-          transition: all 0.3s ease-in-out 0s;
-        }
-        :hover::before {
-          visibility: visible;
-          transform: scaleX(1);
-        }
+    }
+    @media (max-width: 700px) {
+      flex-direction: column;
+      .links {
+        flex-direction: column;
+        text-align: center;
       }
     }
   }

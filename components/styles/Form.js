@@ -4,8 +4,8 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 50%;
-  min-height: 300px;
+  width: 100%;
+  height: auto;
   padding: 2rem;
   margin: 0.5rem auto;
   background-color: bisque;
@@ -14,21 +14,27 @@ const Form = styled.form`
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    border-bottom: ${(props) => props.theme.border};
   }
   input {
     width: 80%;
     padding: 1rem;
     background-color: transparent;
     border: none;
-    border-bottom: ${(props) => props.theme.border};
     :focus {
       outline: 0;
     }
   }
-  input[type="file"] {
-    border: none;
-    padding: 0;
-    width: auto;
+  button {
+    display: inline-block;
+    margin: 0 auto;
+    color: ${(props) => props.theme.black};
+    :hover {
+      background-color: transparent;
+    }
+    :hover::before {
+      background-color: ${(props) => props.theme.black};
+    }
   }
 `;
 export default Form;
