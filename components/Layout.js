@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
-import Image from "next/image";
 
 const Page = styled.div``;
 const InnerPage = styled.div`
   height: 100%;
+  width: 95%;
   .background-image {
     position: absolute;
     right: 0.5rem;

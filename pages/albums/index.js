@@ -57,20 +57,6 @@ export default function Index() {
 
   return (
     <Container>
-      <h1>Check Out These Albums:</h1>
-      <div className="albums">
-        {albums &&
-          albums.map((album) => (
-            <div className="album" key={album.id}>
-              <Link href={`/albums/${album.id}`}>
-                <a>
-                  <h2>{album.name}</h2>
-                </a>
-              </Link>
-              <h3>{album.description}</h3>
-            </div>
-          ))}
-      </div>
       <Form>
         <h1>Create a New Album</h1>
         <label htmlFor="name">
@@ -99,6 +85,19 @@ export default function Index() {
           Make New Album!
         </Button>
       </Form>
+      <div className="albums">
+        {albums &&
+          albums.map((album) => (
+            <div className="album" key={album.id}>
+              <Link href={`/albums/${album.id}`}>
+                <a>
+                  <Button>{album.name}</Button>
+                </a>
+              </Link>
+              <h3>{album.description}</h3>
+            </div>
+          ))}
+      </div>
     </Container>
   );
 }
