@@ -36,18 +36,14 @@ async function deleteAlbum(albumId) {
 export default function Index() {
   const queryClient = useQueryClient();
 
-  const refetchQuery = async () => {
-    await queryClient.refetchQueries();
-  };
-
   const { data: albums, error } = useQuery("albums", getAlbums);
 
   const mutationCreateAlbum = useMutation(createAlbum, {
-    onSuccess: refetchQuery(),
+    onSuccess: async () => await queryClient.refetchQueries(),
   });
 
   const mutationDeleteAlbum = useMutation(deleteAlbum, {
-    onSuccess: refetchQuery(),
+    onSuccess: async () => await queryClient.refetchQueries(),
   });
 
   const [formData, setFormData] = React.useState({
@@ -120,6 +116,11 @@ export default function Index() {
               <Button onClick={() => useDeleteMutation(album.id)}>
                 Delete
               </Button>
+              <Link href={`albums/${album.id}/edit`}>
+                <a>
+                  <Button>Edit</Button>
+                </a>
+              </Link>
             </div>
           ))}
       </div>
