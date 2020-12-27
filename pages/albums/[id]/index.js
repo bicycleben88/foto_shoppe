@@ -1,14 +1,16 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import Form from "../../../components/styles/Form";
 import Image from "next/image";
+import Form from "../../../components/styles/Form";
 import Button from "../../../components/styles/Button";
 import Container from "../../../components/styles/AlbumsShow";
 
-async function getAlbum(albumId) {
-  const response = await fetch(`http://localhost:3000/api/albums/${albumId}`);
+let globalAlbumId = "";
+
+async function getAlbum() {
+  const response = await fetch(
+    `http://localhost:3000/api/albums/${globalAlbumId}`
+  );
   const { album } = await response.json();
   return album;
 }
@@ -53,7 +55,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const albumData = await getAlbum(params.id);
+  globalAlbumId = params.id;
+  const albumData = await getAlbum();
   return {
     props: {
       albumData,
@@ -61,25 +64,19 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const Album = ({ albumData }) => {
+export default function Album({ albumData }) {
+  globalAlbumId = albumData.id;
   const queryClient = useQueryClient();
 
-  const refetchQuery = async () => {
-    await queryClient.refetchQueries();
-  };
-
-  // const [album, setAlbum] = React.useState(albumData);
-  // console.log(album);
-
-  // const { data } = useQuery("album", getAlbum, {
-  //   initialData: albumData,
-  // });
+  const { data: album } = useQuery("album", getAlbum);
 
   const createPictureMutation = useMutation(createPicture, {
-    // onSuccess: refetchQuery(),
+    onSuccess: async () => await queryClient.refetchQueries(),
   });
 
-  const deletePictureMutation = useMutation(deletePicture);
+  const deletePictureMutation = useMutation(deletePicture, {
+    onSuccess: async () => await queryClient.refetchQueries(),
+  });
 
   const [picture, setPicture] = React.useState({
     name: "",
@@ -125,7 +122,6 @@ const Album = ({ albumData }) => {
       description: "",
       image: "",
     });
-    // await updateAlbum(albumData.id);
   };
 
   const useDeletePicture = (pictureId) => {
@@ -133,11 +129,6 @@ const Album = ({ albumData }) => {
       id: pictureId,
     });
   };
-
-  // const updateAlbum = async (id) => {
-  //   const updatedAlbum = await getAlbum(id);
-  //   await setAlbum(updatedAlbum);
-  // };
 
   return (
     <Container>
@@ -183,26 +174,25 @@ const Album = ({ albumData }) => {
         </Button>
       </Form>
       <div>
-        {albumData.pictures.map((picture) => {
-          return (
-            <div className="picture" key={picture.id}>
-              <h2>{picture.name}</h2>
-              <p>{picture.description}</p>
-              <Image
-                src={picture.image}
-                alt={picture.name}
-                width={500}
-                height={640}
-              />
-              <Button onClick={() => useDeletePicture(picture.id)}>
-                Delete
-              </Button>
-            </div>
-          );
-        })}
+        {album &&
+          album.pictures.map((picture) => {
+            return (
+              <div className="picture" key={picture.id}>
+                <h2>{picture.name}</h2>
+                <p>{picture.description}</p>
+                <Image
+                  src={picture.image}
+                  alt={picture.name}
+                  width={500}
+                  height={640}
+                />
+                <Button onClick={() => useDeletePicture(picture.id)}>
+                  Delete
+                </Button>
+              </div>
+            );
+          })}
       </div>
     </Container>
   );
-};
-
-export default Album;
+}
