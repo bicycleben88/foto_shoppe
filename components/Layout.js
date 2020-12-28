@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const Page = styled.div`
   margin: 0 auto;
-  /* box-sizing: border-box; */
+  min-height: 100vh;
+  position: relative;
 `;
 const InnerPage = styled.div`
   margin: 0 auto;
   height: 100%;
   width: 95%;
+  padding-bottom: 2rem;
   .background-image {
     position: absolute;
     right: 0.5rem;
@@ -30,6 +33,7 @@ export default function Layout(props) {
         />
         {props.children}
       </InnerPage>
+      <Footer />
     </Page>
   );
 }

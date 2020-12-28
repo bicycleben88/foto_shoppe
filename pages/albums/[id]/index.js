@@ -68,7 +68,7 @@ export default function Album({ albumData }) {
   globalAlbumId = albumData.id;
   const queryClient = useQueryClient();
 
-  const { data: album } = useQuery("album", getAlbum);
+  const { data: album, status } = useQuery("album", getAlbum);
 
   const createPictureMutation = useMutation(createPicture, {
     onSuccess: async () => await queryClient.refetchQueries(),

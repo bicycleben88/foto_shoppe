@@ -7,30 +7,18 @@ const AlbumContainer = styled.div`
   flex-wrap: wrap;
   max-width: 1000px;
   margin: 1rem auto;
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: ${(props) => props.theme.white};
-    .links {
-      display: flex;
-    }
-    @media (max-width: 700px) {
-      flex-direction: column;
-      .links {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-  }
+  padding-bottom: 2rem;
   .picture {
+    box-sizing: border-box;
     border-top: ${(props) => props.theme.border};
     padding: 2rem;
     margin: 0.5rem auto;
-    background-color: bisque;
+    background-color: ${(props) => props.theme.white};
     width: 50%;
+    text-align: center;
+    button {
+      padding-top: 0.5rem;
+    }
   }
 `;
 
