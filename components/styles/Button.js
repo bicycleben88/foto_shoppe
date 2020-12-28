@@ -4,9 +4,12 @@ const Button = styled.button`
   background-color: transparent;
   color: ${(props) => props.theme.black};
   border: none;
-  padding: 0.5rem;
+  padding: 0 1rem;
   font-size: 2rem;
   position: relative;
+  :focus {
+    outline: none;
+  }
   :hover {
     cursor: pointer;
   }

@@ -12,15 +12,13 @@ async function getAlbums() {
 }
 
 async function createAlbum(newAlbum) {
-  const response = await fetch(`/api/albums/create`, {
+  await fetch(`/api/albums/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(newAlbum),
   });
-  const { album } = await response.json();
-  return album;
 }
 
 async function deleteAlbum(albumId) {
@@ -134,6 +132,31 @@ export default function Index() {
           Make New Album!
         </Button>
       </Form>
+      {editState.editAlbum && (
+        <Form className="edit-form">
+          <label htmlFor="name">
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={editForm.name}
+              onChange={handleEditChange}
+            />
+          </label>
+          <label htmlFor="description">
+            Description:
+            <input
+              type="text"
+              name="description"
+              value={editForm.description}
+              onChange={handleEditChange}
+            />
+          </label>
+          <Button onClick={() => useEditMutation(editForm)}>
+            Update Album!
+          </Button>
+        </Form>
+      )}
       <div className="albums">
         {albums &&
           albums.map((album) => (
@@ -159,31 +182,6 @@ export default function Index() {
               >
                 Edit
               </Button>
-              {editState.editAlbum && (
-                <Form>
-                  <label htmlFor="name">
-                    Name:
-                    <input
-                      type="text"
-                      name="name"
-                      value={editForm.name}
-                      onChange={handleEditChange}
-                    />
-                  </label>
-                  <label htmlFor="description">
-                    Description:
-                    <input
-                      type="text"
-                      name="description"
-                      value={editForm.description}
-                      onChange={handleEditChange}
-                    />
-                  </label>
-                  <Button onClick={() => useEditMutation(editForm)}>
-                    Update Album!
-                  </Button>
-                </Form>
-              )}
             </div>
           ))}
       </div>
