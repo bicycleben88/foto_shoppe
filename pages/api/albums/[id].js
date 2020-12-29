@@ -1,28 +1,30 @@
 import { PrismaClient } from "@prisma/client";
 
-export default async (req, res) => {
+export async function queryAlbum(albumId) {
   const prisma = new PrismaClient({ log: ["query"] });
-  // get [id] from url
-  const {
-    query: { id },
-  } = req;
 
-  // make API request w/[id] from url
   try {
     const album = await prisma.album.findUnique({
       where: {
-        id: parseInt(id),
+        id: parseInt(albumId),
       },
       include: {
         pictures: true,
       },
     });
-    res.statusCode = 200;
-    res.json({ album });
+    return album;
   } catch (error) {
-    res.statusCode = 500;
-    res.json({ error: "Couldn't Get Album " });
+    return { error: error };
   } finally {
     prisma.$disconnect();
   }
-};
+}
+
+export default async function answerQuery(req, res) {
+  // get [id] from url
+  const {
+    query: { id },
+  } = req;
+  const album = await queryAlbum(id);
+  res.json({ album: album });
+}

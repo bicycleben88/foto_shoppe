@@ -1,19 +1,11 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import Image from "next/image";
+import { queryAlbum } from "../../api/albums/[id]";
+import { queryAlbums } from "../../api/albums";
 import Form from "../../../components/styles/Form";
 import Button from "../../../components/styles/Button";
 import Container from "../../../components/styles/AlbumsShow";
-
-let globalAlbumId = "";
-
-async function getAlbum() {
-  const response = await fetch(
-    `http://localhost:3000/api/albums/${globalAlbumId}`
-  );
-  const { album } = await response.json();
-  return album;
-}
 
 async function createPicture(pictureData) {
   const response = await fetch(`/api/pictures/create`, {
@@ -38,10 +30,9 @@ async function deletePicture(pictureId) {
 }
 
 export async function getStaticPaths() {
-  const response = await fetch(`http://localhost:3000/api/albums`);
-  const data = await response.json();
+  const albums = await queryAlbums();
   const paths = [];
-  data.albums.map((album) => {
+  albums.map((album) => {
     paths.push({
       params: {
         id: album.id.toString(),
@@ -55,20 +46,26 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  globalAlbumId = params.id;
-  const albumData = await getAlbum();
+  const response = await queryAlbum(params.id);
+  const data = await JSON.stringify(response);
+  const initialAlbumData = await JSON.parse(data);
   return {
     props: {
-      albumData,
+      initialAlbumData,
     },
   };
 }
 
-export default function Album({ albumData }) {
-  globalAlbumId = albumData.id;
+export default function Album({ initialAlbumData }) {
   const queryClient = useQueryClient();
 
-  const { data: album, status } = useQuery("album", getAlbum);
+  const { data: album } = useQuery(
+    "album",
+    () => fetch(`/api/albums/${initialAlbumData.id}`).then((res) => res.json()),
+    {
+      initialData: initialAlbumData,
+    }
+  );
 
   const createPictureMutation = useMutation(createPicture, {
     onSuccess: async () => await queryClient.refetchQueries(),
@@ -115,7 +112,7 @@ export default function Album({ albumData }) {
       name: picture.name,
       description: picture.description,
       image: picture.image,
-      albumId: albumData.id,
+      albumId: initialAlbumData.id,
     });
     setPicture({
       name: "",
@@ -174,8 +171,8 @@ export default function Album({ albumData }) {
         </Button>
       </Form>
       <div>
-        {album &&
-          album.pictures.map((picture) => {
+        {album.album &&
+          album.album.pictures.map((picture) => {
             return (
               <div className="picture" key={picture.id}>
                 <h2>{picture.name}</h2>

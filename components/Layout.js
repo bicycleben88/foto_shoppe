@@ -33,7 +33,7 @@ export default function Layout(props) {
         />
         {props.children}
       </InnerPage>
-      <Footer />
+      {/* <Footer /> */}
     </Page>
   );
 }
