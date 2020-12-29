@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React from "react";
 import Container from "../components/styles/Home";
 
 export default function Home() {
