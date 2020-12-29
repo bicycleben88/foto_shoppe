@@ -33,14 +33,13 @@ export async function getStaticPaths() {
   const albums = await queryAlbums();
   const paths = [];
 
-  albums &&
-    albums.map((album) => {
-      return paths.push({
-        params: {
-          id: album.id.toString(),
-        },
-      });
+  albums.map((album) => {
+    return paths.push({
+      params: {
+        id: album.id.toString(),
+      },
     });
+  });
   return {
     paths,
     fallback: false,
