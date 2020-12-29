@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/api/albums/",
+      "methods": ["GET"],
+      "dest": "/api/albums/index.js"
+    },
+    {
+      "src": "/api/albums/[id]",
+      "methods": ["GET"],
+      "dest": "/api/albums/[id].js"
+    },
+    {
+      "src": "/api/albums/edit",
+      "methods": ["PUT"],
+      "dest": "/api/albums/edit.js"
+    },
+    {
+      "src": "/api/albums/create",
+      "methods": ["POST"],
+      "dest": "/api/albums/create.js"
+    },
+    {
+      "src": "/api/albums/delete",
+      "methods": ["DELETE"],
+      "dest": "/api/albums/delete.js"
+    },
+    {
+      "src": "/api/pictures/create",
+      "methods": ["POST"],
+      "dest": "/api/pictures/create.js"
+    },
+    {
+      "src": "/api/pictures/delete",
+      "methods": ["DELETE"],
+      "dest": "/api/pictures/delete.js"
+    }
+  ]
+}
