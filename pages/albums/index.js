@@ -158,7 +158,7 @@ export default function Index() {
         </Form>
       )}
       <div className="albums">
-        {albums &&
+        {/* {albums &&
           albums.map((album) => (
             <div className="album" key={album.id}>
               <Link href={`/albums/${album.id}`}>
@@ -183,7 +183,7 @@ export default function Index() {
                 Edit
               </Button>
             </div>
-          ))}
+          ))} */}
       </div>
     </Container>
   );
