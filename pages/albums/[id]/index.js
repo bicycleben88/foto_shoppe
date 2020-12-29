@@ -32,7 +32,8 @@ async function deletePicture(pictureId) {
 export async function getStaticPaths() {
   const albums = await queryAlbums();
   const paths = [];
-  await albums.map((album) => {
+  const _albums = [...albums];
+  _albums.map((album) => {
     return paths.push({
       params: {
         id: album.id.toString(),
