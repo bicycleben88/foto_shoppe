@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 export async function queryAlbums() {
   const prisma = new PrismaClient({ log: ["query"] });
+
   try {
     const albums = await prisma.album.findMany();
     return albums;
