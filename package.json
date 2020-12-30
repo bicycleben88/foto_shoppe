@@ -6,7 +6,7 @@
     "prisma": "prisma",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 80",
     "postinstall": "prisma generate",
     "heroku-postbuild": "npm run build"
   },
