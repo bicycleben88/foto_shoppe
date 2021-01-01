@@ -29,23 +29,6 @@ async function deletePicture(pictureId) {
   });
 }
 
-// export async function getStaticPaths() {
-//   const albums = await queryAlbums();
-//   const paths = [];
-
-//   albums.map((album) => {
-//     return paths.push({
-//       params: {
-//         id: album.id.toString(),
-//       },
-//     });
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
 export async function getServerSideProps(context) {
   console.log(context.query.id);
   const response = await queryAlbum(context.query.id);
