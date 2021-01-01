@@ -46,6 +46,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log(params);
   const response = await queryAlbum(params.id);
   const data = await JSON.stringify(response);
   const initialAlbumData = await JSON.parse(data);
