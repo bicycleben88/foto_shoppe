@@ -2,17 +2,16 @@ import styled from "styled-components";
 
 const AlbumContainer = styled.div`
   display: flex;
-  justify-content: space-around;
   flex-direction: column;
+  justify-content: space-around;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 1rem auto;
-  padding-bottom: 2rem;
+  overflow-y: auto;
+  width: 70%;
+  margin: 0 auto;
   .picture {
-    box-sizing: border-box;
     border-top: ${(props) => props.theme.border};
-    padding: 2rem;
-    margin: 0.5rem auto;
+    padding: 1rem;
+    margin: 0.5rem auto 0 auto;
     background-color: ${(props) => props.theme.white};
     width: 50%;
     text-align: center;

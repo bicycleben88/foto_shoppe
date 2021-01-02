@@ -4,8 +4,7 @@ const FooterStyled = styled.footer`
   border-top: 1px solid ${(props) => props.theme.white};
   width: 100%;
   padding: 0.5rem;
-  margin-top: 1rem;
-  height: 2rem;
+  margin-top: 0.5rem;
   div {
     float: right;
   }

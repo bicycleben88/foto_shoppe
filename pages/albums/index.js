@@ -157,7 +157,7 @@ export default function Index() {
           </Button>
         </Form>
       )}
-      <div className="albums">
+      <div>
         {albums &&
           albums.map((album) => (
             <div className="album" key={album.id}>

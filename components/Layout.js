@@ -5,14 +5,14 @@ import Footer from "./Footer";
 
 const Page = styled.div`
   margin: 0 auto;
+  width: 100%;
   min-height: 100vh;
   position: relative;
 `;
 const InnerPage = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  height: 100%;
-  width: 95%;
-  padding-bottom: 2rem;
   .background-image {
     position: absolute;
     right: 0.5rem;
@@ -32,8 +32,8 @@ export default function Layout(props) {
           className="background-image"
         />
         {props.children}
+        <Footer />
       </InnerPage>
-      {/* <Footer /> */}
     </Page>
   );
 }
