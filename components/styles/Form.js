@@ -7,9 +7,8 @@ const Form = styled.form`
   width: 100%;
   height: auto;
   padding: 2rem;
-  margin: 0.5rem auto;
+  margin: 0.5rem auto 0 auto;
   background-color: bisque;
-  box-sizing: border-box;
   label {
     display: flex;
     justify-content: space-between;

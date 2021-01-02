@@ -3,14 +3,13 @@ import styled from "styled-components";
 const AlbumsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  width: 70%;
   margin: 0 auto;
   .album {
-    box-sizing: border-box;
     border-top: ${(props) => props.theme.border};
-    width: 60%;
     height: auto;
-    margin: 0 auto;
+    margin: 0.5rem auto;
+    width: 50%;
     padding: 2rem;
     text-align: center;
     background-color: ${(props) => props.theme.white};

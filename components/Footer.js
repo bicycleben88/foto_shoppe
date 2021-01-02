@@ -5,9 +5,6 @@ import Button from "../components/styles/Button";
 const Footer = (props) => {
   return (
     <FooterStyled>
-      <Button>
-        <a href="#top">Back to Top</a>
-      </Button>
       <div>
         <Button>
           <a href="https://github.com/bicycleben88/photo_album" target="#">

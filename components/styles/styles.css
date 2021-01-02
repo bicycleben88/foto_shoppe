@@ -6,6 +6,9 @@
   font-family: "Open Sans Condensed", sans-serif;
   src: url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 }
+* {
+  box-sizing: border-box;
+}
 :root {
   --black: #190901;
   --bloodRed: #8a0303;
@@ -14,11 +17,8 @@
   --white: #fafafa;
   --border: 2px solid #de4905;
   --shadow: 1px 1px 1px 0 #190901;
-  box-sizing: border-box;
 }
 html {
-  height: 100%;
-  box-sizing: border-box;
   font-size: 10px;
   background-color: var(--black);
   width: 95%;
@@ -28,7 +28,7 @@ h1 {
   font-family: "Langar", cursive;
 }
 body {
-  height: 100%;
+  min-height: 100vh;
   color: var(--black);
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 1.5rem;
