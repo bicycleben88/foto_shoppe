@@ -9,6 +9,10 @@ const HeaderStyles = styled.header`
   h1 {
     font-size: 10rem;
     margin: 0;
+    @media (max-width: 700px) {
+      font-size: 5rem;
+      text-align: center;
+    }
   }
   a {
     color: ${(props) => props.theme.white};
