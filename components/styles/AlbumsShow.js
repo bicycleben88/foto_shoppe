@@ -6,8 +6,11 @@ const AlbumContainer = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   overflow-y: auto;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   .picture {
     border-top: ${(props) => props.theme.border};
     padding: 1rem;
@@ -15,6 +18,9 @@ const AlbumContainer = styled.div`
     background-color: ${(props) => props.theme.white};
     width: 50%;
     text-align: center;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
     button {
       padding-top: 0.5rem;
     }
