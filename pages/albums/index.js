@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/client";
 import Form from "../../components/styles/Form";
 import Container from "../../components/styles/AlbumsIndex";
 import Button from "../../components/styles/Button";
@@ -55,6 +56,8 @@ export default function Index() {
     description: "",
   });
 
+  const [session] = useSession();
+
   const mutationCreateAlbum = useMutation(createAlbum, {
     onSuccess: async () => await queryClient.refetchQueries(),
   });
@@ -105,6 +108,11 @@ export default function Index() {
   return (
     <Container>
       <Form>
+        {!session ? (
+          <Button onClick={signIn}>Connect to Git</Button>
+        ) : (
+          <Button onClick={signOut}>Log Out</Button>
+        )}
         <h1>Create a New Album</h1>
         <label htmlFor="name">
           Name:
