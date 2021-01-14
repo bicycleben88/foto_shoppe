@@ -2,6 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
+import { Provider } from "next-auth/client";
 import Layout from "../components/Layout";
 import "../components/styles/styles.css";
 
@@ -20,12 +21,14 @@ const theme = {
 function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <Provider session={pageProps.session}>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Provider>
     </QueryClientProvider>
   );
 }
