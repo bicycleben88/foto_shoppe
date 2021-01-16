@@ -46,7 +46,7 @@ async function editAlbum(editedAlbum) {
 export default function Index() {
   const queryClient = useQueryClient();
 
-  const { data: albums, error } = useQuery("albums", getAlbums);
+  const { data: albums } = useQuery("albums", getAlbums);
 
   const [editState, setEditState] = React.useState({ editAlbum: false });
 
@@ -137,7 +137,7 @@ export default function Index() {
             placeholder="Give Your Album a Description!"
           />
         </label>
-        <Button onClick={(event) => useCreateMutation(event)}>
+        <Button type="button" onClick={(event) => useCreateMutation(event)}>
           Make New Album!
         </Button>
       </Form>
@@ -161,7 +161,7 @@ export default function Index() {
               onChange={handleEditChange}
             />
           </label>
-          <Button onClick={() => useEditMutation(editForm)}>
+          <Button type="button" onClick={() => useEditMutation(editForm)}>
             Update Album!
           </Button>
         </Form>
