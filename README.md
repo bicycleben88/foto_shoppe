@@ -4,6 +4,8 @@
 
 ![Landing Page to Foto Shoppe](https://i.imgur.com/GQwzOnG.png)
 
+## [Video Walkthru](https://www.youtube.com/watch?v=_cJJg8vUk2Y)
+
 ## Techonologies Used
 
 > - Next.js
