@@ -22,3 +22,6 @@
 > - Utilize Prisma Client for queries and mutations
 > - Build server-less full stack app w/ Next.js's built-in API end points
 
+## Stretch
+
+> - Authenticate user w/ OAuth & Next-auth.js
