@@ -12,6 +12,9 @@ const AlbumContainer = styled.div`
     width: 100%;
   }
   .picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-top: ${(props) => props.theme.border};
     padding: 1rem;
     margin: 0.5rem auto 0 auto;
