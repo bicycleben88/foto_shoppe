@@ -1,6 +1,6 @@
 ![Landing Page to Foto Shoppe](https://i.imgur.com/pmpJTiO.png)
 
-Full-Stack web-application for users to Create, Read, Edit, & Update (CRUD) a photo. User can upload image from computer and add & delete it to a photo album. For access to CRUD functions a user must login thru OAuth application hosted on GitHub using Next-Auth
+Full-Stack web-application for users to Create, Read, Update & Delete (CRUD) a photo album. User can upload image from computer and add & delete it to a photo album. For access to CRUD functions a user must login thru OAuth application hosted on GitHub using Next-Auth
 
 ## Links
 
