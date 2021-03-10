@@ -11,33 +11,33 @@ export default function Home() {
   return (
     <PanelsStyles>
       <Panel
-        topText="top"
-        middleText="middle"
-        bottomText="bottom"
-        image="https://i.imgur.com/ZaTr3kV.jpg"
-      />
-      <Panel
-        topText="top"
-        middleText="middle"
-        bottomText="bottom"
+        topText="pictures"
+        middleText="make"
+        bottomText="memories"
         image="https://i.imgur.com/XxKyfp9.jpg"
       />
       <Panel
-        topText="top"
-        middleText="middle"
-        bottomText="bottom"
-        image="https://i.imgur.com/tpFErxl.jpg"
+        topText="take"
+        middleText="a"
+        bottomText="shot"
+        image="https://i.imgur.com/ZaTr3kV.jpg"
       />
       <Panel
-        topText="top"
-        middleText="middle"
-        bottomText="bottom"
+        topText="every"
+        middleText="moment"
+        bottomText="lasts"
         image="https://i.imgur.com/HGmUuxn.png"
       />
       <Panel
-        topText="top"
-        middleText="middle"
-        bottomText="bottom"
+        topText="stand"
+        middleText="in"
+        bottomText="close"
+        image="https://i.imgur.com/tpFErxl.jpg"
+      />
+      <Panel
+        topText="this"
+        middleText="time"
+        bottomText="counts"
         image="https://i.imgur.com/hwWPnbz.jpg"
       />
     </PanelsStyles>
