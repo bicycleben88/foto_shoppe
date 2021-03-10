@@ -1,17 +1,45 @@
-import Head from "next/head";
 import React from "react";
-import Container from "../components/styles/Home";
+import styled from "styled-components";
+import Panel from "../components/Panel";
 
+const PanelsStyles = styled.div`
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+`;
 export default function Home() {
   return (
-    <Container>
-      <h4>click the banner to begin</h4>
-      <div className="photo-container">
-        <div className="photo" />
-        <div className="photo" />
-        <div className="photo" />
-      </div>
-      <h2>The One Stoppe Shoppe for Posting Pictures</h2>
-    </Container>
+    <PanelsStyles>
+      <Panel
+        topText="top"
+        middleText="middle"
+        bottomText="bottom"
+        image="https://i.imgur.com/ZaTr3kV.jpg"
+      />
+      <Panel
+        topText="top"
+        middleText="middle"
+        bottomText="bottom"
+        image="https://i.imgur.com/XxKyfp9.jpg"
+      />
+      <Panel
+        topText="top"
+        middleText="middle"
+        bottomText="bottom"
+        image="https://i.imgur.com/tpFErxl.jpg"
+      />
+      <Panel
+        topText="top"
+        middleText="middle"
+        bottomText="bottom"
+        image="https://i.imgur.com/HGmUuxn.png"
+      />
+      <Panel
+        topText="top"
+        middleText="middle"
+        bottomText="bottom"
+        image="https://i.imgur.com/hwWPnbz.jpg"
+      />
+    </PanelsStyles>
   );
 }
