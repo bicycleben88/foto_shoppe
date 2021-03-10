@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HeaderStyles = styled.header`
   height: auto;
-  border-bottom: 1px solid ${(props) => props.theme.white};
+  border-bottom: 1px solid var(--white);
   padding: 0 1rem;
   h1 {
     font-size: 10rem;
@@ -15,7 +15,7 @@ const HeaderStyles = styled.header`
     }
   }
   a {
-    color: ${(props) => props.theme.white};
+    color: var(--white);
   }
 `;
 
