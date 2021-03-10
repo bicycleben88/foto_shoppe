@@ -21,6 +21,16 @@ const PanelStyles = styled.div`
     width: 100%;
     transition: transform 0.5s;
   }
+  p {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-family: "Open Sans Condensed";
+    color: var(--white);
+    text-shadow: 0 0 3px var(--grey), 0 0 15px var(--black);
+  }
+  p:nth-child(2) {
+    font-size: 1.75em;
+  }
 `;
 
 export default function Panel({ topText, middleText, bottomText, image }) {
