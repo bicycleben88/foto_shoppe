@@ -76,6 +76,36 @@ OAuth uses authorization tokens instead of passwords to permit access to user co
 > - ![upload-image](https://i.imgur.com/VQG0GL0.png)
 > - Host image in database
 
+## Image Panels
+
+> - Add \<Panel> components to home page & pass as props the image url and text
+>
+>   ![panel component](https://i.imgur.com/wHfqOBZ.png)
+>
+> \<Panel> component
+>
+> - Css - Styled Components
+>
+>   - use flexbox to center & align content inside each panel and to evenly space panels across the screen
+>
+>   ![panel flex](https://i.imgur.com/Bb2KUSG.png)
+>
+> - use flexbox to center content of the child elements of the panel
+> - use CSS propery flex to push top and bottom text towards the ends of the panel
+>
+>   ![child flex](https://i.imgur.com/gx4zWiL.png)
+>
+> - store boolean value in state to use as a toggle variable
+>   ![flex state](https://i.imgur.com/s7T1OsO.png)
+> - create object to hold CSS properties & use ternary operator to determine their values
+>
+>   ![flex css variables](https://i.imgur.com/hAhwux3.png)
+>
+> - add event listener to panel that will toggle state when the panel is clicked
+> - pass the css object as inline styles to the elements
+>
+>   ![panel component](https://i.imgur.com/n8aGSXN.png)
+
 ## Resources
 
 > - [Next.js](https://nextjs.org/)
@@ -88,5 +118,5 @@ OAuth uses authorization tokens instead of passwords to permit access to user co
 ## Contact
 
 > - [LinkedIn](https://www.linkedin.com/in/benjamin-alt-higginbotham/)
-> - [Portfolio](https://my-portfolio.benjamin-higginbotham.vercel.app/)
+> - [Portfolio](https://higginbotham.fun/)
 > - [Tweet @BenMichaelJord1](https://twitter.com/BenMichaelJord1)

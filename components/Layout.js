@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Header from "./Header";
-import Footer from "./Footer";
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -55,12 +54,6 @@ const InnerPage = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  .background-image {
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-    z-index: -1;
-  }
 `;
 
 export default function Layout(props) {
@@ -68,15 +61,7 @@ export default function Layout(props) {
     <Page>
       <GlobalStyles />
       <Header />
-      <InnerPage>
-        {/* <img
-          src="https://i.imgur.com/Scwd8cd.jpg?1"
-          alt="Picture Frame"
-          className="background-image"
-        /> */}
-        {props.children}
-        {/* <Footer /> */}
-      </InnerPage>
+      <InnerPage>{props.children}</InnerPage>
     </Page>
   );
 }
