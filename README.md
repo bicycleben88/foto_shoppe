@@ -6,7 +6,7 @@ Full-Stack web-application for users to Create, Read, Update & Delete (CRUD) a p
 
 > - [Live Site](https://cigarette-camus-cat.herokuapp.com/)
 > - [Git Repo](https://github.com/bicycleben88/photo_album)
-> - [Video Walkthru](https://www.youtube.com/watch?v=_cJJg8vUk2Y)
+> - [Video Walkthru](https://www.youtube.com/playlist?list=PLjYC3ZkfhqCpkFUDCzs1MjbFvuSSRTHvL)
 
 ## Techonologies Used
 
