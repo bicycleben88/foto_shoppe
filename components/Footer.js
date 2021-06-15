@@ -12,6 +12,11 @@ const Footer = (props) => {
           </a>
         </Button>
         <Button>
+          <a href="https://higginbotham.fun" target="#">
+            Portfolio
+          </a>
+        </Button>
+        <Button>
           <a
             href="https://www.linkedin.com/in/benjamin-alt-higginbotham/"
             target="#"
