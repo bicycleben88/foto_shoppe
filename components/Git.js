@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const GitSyled = styled.div`
-  color: ${(props) => props.theme.white};
+  color: var(--white);
   text-align: center;
   position: relative;
   margin: 0.5rem auto;
@@ -12,7 +12,7 @@ const GitSyled = styled.div`
     left: 0;
     width: 3px;
     height: 100%;
-    background-color: ${(props) => props.theme.white};
+    background-color: var(--white);
     transform: scaleY(0);
     transform-origin: bottom left;
     transition: transform 0.2s;
@@ -24,7 +24,7 @@ const GitSyled = styled.div`
     right: 0;
     width: 3px;
     height: 100%;
-    background-color: ${(props) => props.theme.white};
+    background-color: var(--white);
     transform: scaleY(0);
     transform-origin: top right;
     transition: transform 0.2s 0.2s;
@@ -39,7 +39,7 @@ const GitSyled = styled.div`
       left: 0;
       width: 100%;
       height: 0.2rem;
-      background-color: ${(props) => props.theme.white};
+      background-color: var(--white);
       transform: scaleX(0);
       transform-origin: top left;
       transition: transform 0.2s 0.3s;
@@ -51,7 +51,7 @@ const GitSyled = styled.div`
       right: 0;
       width: 100%;
       height: 0.2rem;
-      background-color: ${(props) => props.theme.white};
+      background-color: var(--white);
       transform: scaleX(0);
       transform-origin: bottom right;
       transition: transform 0.2s 0.1s;

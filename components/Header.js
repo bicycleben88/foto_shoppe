@@ -28,7 +28,7 @@ export default function Header() {
           <h1>SHOPPE.</h1>
         </a>
       </Link>
-      <Link href="/albums">Click Here to Create a New Album</Link>
+      <Link href="/albums">Click Here to View Albums!</Link>
     </HeaderStyles>
   );
 }
