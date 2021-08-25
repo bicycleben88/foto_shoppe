@@ -58,7 +58,7 @@ export default function Index() {
   });
 
   const [session] = useSession();
-
+  console.log({ session });
   const mutationCreateAlbum = useMutation(createAlbum, {
     onSuccess: async () => await queryClient.refetchQueries(),
   });

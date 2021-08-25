@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Adapters from "next-auth/adapters";
 import { PrismaClient } from "@prisma/client";
 import Providers from "next-auth/providers";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const prisma = new PrismaClient();
 
@@ -26,10 +27,10 @@ const options = {
   jwt: {
     secret: process.env.JWT_SECRET,
   },
-  adapter: Adapters.Prisma.Adapter({ prisma }),
+  adapter: PrismaAdapter(prisma),
 };
 
 export default (req, res) => {
-  console.log(options.providers);
+  console.log(options.providers[0]);
   return NextAuth(req, res, options);
 };
