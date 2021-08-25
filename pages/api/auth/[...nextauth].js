@@ -22,7 +22,7 @@ export default async (req, res) => {
         clientSecret: clientSecret,
       }),
     ],
-    debug: process.env.NODE_ENV === "develoçpment",
+    debug: process.env.NODE_ENV === "development",
     secret: process.env.AUTH_SECRET,
     jwt: {
       secret: process.env.JWT_SECRET,
