@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GitSyled = styled.div`
+const LoginStyled = styled.div`
   color: var(--white);
   text-align: center;
   position: relative;
@@ -82,12 +82,4 @@ const GitSyled = styled.div`
   }
 `;
 
-const Git = (props) => {
-  return (
-    <GitSyled onClick={props.clickFunction}>
-      <h3 className="inner">{props.text}</h3>
-    </GitSyled>
-  );
-};
-
-export default Git;
+export default LoginStyled;

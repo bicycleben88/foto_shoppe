@@ -18,8 +18,8 @@ let clientSecret =
 const options = {
   providers: [
     Providers.GitHub({
-      clientId: clientId,
-      clientSecret: clientSecret,
+      clientId: process.env.GIT_PRODUCTION_ID,
+      clientSecret: process.env.GIT_PRODUCTON_SECRET,
     }),
   ],
   debug: process.env.NODE_ENV === "development",
@@ -28,9 +28,9 @@ const options = {
     secret: process.env.JWT_SECRET,
   },
   adapter: PrismaAdapter(prisma),
+  database: process.env.DATABASE_URL,
 };
 
 export default (req, res) => {
-  console.log(options.providers[0]);
   return NextAuth(req, res, options);
 };

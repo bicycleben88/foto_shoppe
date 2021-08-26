@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/client";
+import LoginStyled from "./styles/LoginButtons";
 
 const HeaderStyles = styled.header`
   height: auto;
@@ -20,6 +22,8 @@ const HeaderStyles = styled.header`
 `;
 
 export default function Header() {
+  const [session] = useSession();
+
   return (
     <HeaderStyles>
       <Link href="/albums">
@@ -28,7 +32,15 @@ export default function Header() {
           <h1>SHOPPE.</h1>
         </a>
       </Link>
-      <Link href="/albums">Click Here to View Albums!</Link>
+      {!session && (
+        <LoginStyled onClick={() => signIn()}>
+          {" "}
+          Connect with Git to Create Content{" "}
+        </LoginStyled>
+      )}
+      {session && (
+        <LoginStyled onClick={() => signOut()}> Log Out </LoginStyled>
+      )}
     </HeaderStyles>
   );
 }
