@@ -34,8 +34,7 @@ export default function Header() {
       </Link>
       {!session && (
         <LoginStyled onClick={() => signIn()}>
-          {" "}
-          Connect with Git to Create Content{" "}
+          <h3 className="inner">Connect with Git to Create Content</h3>
         </LoginStyled>
       )}
       {session && (
