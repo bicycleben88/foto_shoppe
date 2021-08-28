@@ -33,12 +33,17 @@ export default function Header() {
         </a>
       </Link>
       {!session && (
-        <LoginStyled onClick={() => signIn()}>
+        <LoginStyled onClick={() => signIn("github")}>
           <h3 className="inner">Connect with Git to Create Content</h3>
         </LoginStyled>
       )}
       {session && (
-        <LoginStyled onClick={() => signOut()}> Log Out </LoginStyled>
+        <LoginStyled onClick={() => signOut()}>
+          <div className="inner">
+            <p>Heyo {session.user.name}! Click the banner to get started!</p>
+            <h3>Log Out</h3>
+          </div>
+        </LoginStyled>
       )}
     </HeaderStyles>
   );

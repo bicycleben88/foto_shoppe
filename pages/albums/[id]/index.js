@@ -163,7 +163,7 @@ export default function Album({ initialAlbumData }) {
       </Form>
       <div>
         {album.album &&
-          album.album.pictures.map((picture) => {
+          album.album.pictures?.map((picture) => {
             return (
               <div className="picture" key={picture.id}>
                 <h2>{picture.name}</h2>

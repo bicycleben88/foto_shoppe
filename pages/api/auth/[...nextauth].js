@@ -18,8 +18,16 @@ let clientSecret =
 const options = {
   providers: [
     Providers.GitHub({
-      clientId: process.env.GIT_PRODUCTION_ID,
-      clientSecret: process.env.GIT_PRODUCTON_SECRET,
+      clientId: clientId,
+      clientSecret: clientSecret,
+      profile: (profile) => {
+        return {
+          id: profile.id.toString(),
+          name: profile?.name,
+          email: profile?.email,
+          image: profile?.image,
+        };
+      },
     }),
   ],
   debug: process.env.NODE_ENV === "development",
@@ -31,6 +39,6 @@ const options = {
   database: process.env.DATABASE_URL,
 };
 
-export default (req, res) => {
-  return NextAuth(req, res, options);
+export default async (req, res) => {
+  return await NextAuth(req, res, options);
 };
