@@ -37,6 +37,7 @@ const options = {
   },
   adapter: PrismaAdapter(prisma),
   database: process.env.DATABASE_URL,
+  useSecureCookies: false,
 };
 
 export default async (req, res) => {
