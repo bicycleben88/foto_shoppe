@@ -22,7 +22,7 @@ const options = {
       clientSecret: clientSecret,
       profile: (profile) => {
         return {
-          id: profile.id.toString() || profile.id,
+          id: profile.id.toString(),
           name: profile?.name,
           email: profile?.email,
           image: profile?.image,
