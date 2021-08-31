@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import { PrismaClient } from "@prisma/client";
 import Providers from "next-auth/providers";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+let url = require("url");
+let logInAttempts = 0;
 
 const prisma = new PrismaClient();
 
@@ -38,7 +40,13 @@ const options = {
   database: process.env.DATABASE_URL,
 };
 
-export default async (req, res) => {
-  await console.log(req.headers);
+const logIn = async (req, res) => {
+  let parsedUrl = await url.parse(req.url);
+  while (parsedUrl.path.includes("error") && logInAttempts <= 3) {
+    logInAttempts++;
+    logIn(req, res);
+  }
   return await NextAuth(req, res, options);
 };
+
+export default logIn;
