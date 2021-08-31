@@ -39,5 +39,6 @@ const options = {
 };
 
 export default async (req, res) => {
+  await console.log(req.headers);
   return await NextAuth(req, res, options);
 };
