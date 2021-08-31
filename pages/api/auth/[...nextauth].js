@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import Adapters from "next-auth/adapters";
 import { PrismaClient } from "@prisma/client";
 import Providers from "next-auth/providers";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -30,14 +29,13 @@ const options = {
       },
     }),
   ],
-  debug: true,
+  debug: false,
   secret: process.env.AUTH_SECRET,
   jwt: {
     secret: process.env.JWT_SECRET,
   },
   adapter: PrismaAdapter(prisma),
   database: process.env.DATABASE_URL,
-  useSecureCookies: false,
 };
 
 export default async (req, res) => {
