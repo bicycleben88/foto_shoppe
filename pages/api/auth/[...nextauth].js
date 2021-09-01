@@ -38,11 +38,6 @@ const options = {
 };
 
 const logIn = async (req, res) => {
-  let parsedUrl = await url.parse(req.url);
-  while (parsedUrl.path.includes("error") && logInAttempts <= 3) {
-    logInAttempts++;
-    logIn(req, res);
-  }
   return await NextAuth(req, res, options);
 };
 
