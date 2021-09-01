@@ -5,13 +5,15 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 let url = require("url");
 let logInAttempts = 0;
 
+const { GIT_ID, GIT_SECRET, FB_ID, FB_SECRET } = process.env;
+
 const prisma = new PrismaClient();
 
 const options = {
   providers: [
     Providers.GitHub({
-      clientId: process.env.GIT_ID,
-      clientSecret: process.env.GIT_SECRET,
+      clientId: GIT_ID,
+      clientSecret: GIT_SECRET,
       profile: (profile) => {
         return {
           id: profile.id.toString(),
@@ -20,6 +22,10 @@ const options = {
           image: profile?.image,
         };
       },
+    }),
+    Providers.Facebook({
+      clientId: FB_ID,
+      clientSecret: FB_SECRET,
     }),
   ],
   debug: false,
