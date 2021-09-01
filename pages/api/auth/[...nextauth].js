@@ -7,20 +7,11 @@ let logInAttempts = 0;
 
 const prisma = new PrismaClient();
 
-let clientId =
-  process.env.NODE_ENV === "development"
-    ? process.env.GIT_DEVELOPMENT_ID
-    : process.env.GIT_PRODUCTION_ID;
-let clientSecret =
-  process.env.NODE_ENV === "development"
-    ? process.env.GIT_DEVELOPMENT_SECRET
-    : process.env.GIT_PRODUCTON_SECRET;
-
 const options = {
   providers: [
     Providers.GitHub({
-      clientId: clientId,
-      clientSecret: clientSecret,
+      clientId: process.env.GIT_ID,
+      clientSecret: process.env.GIT_SECRET,
       profile: (profile) => {
         return {
           id: profile.id.toString(),
