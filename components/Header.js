@@ -8,6 +8,7 @@ const HeaderStyles = styled.header`
   height: auto;
   border-bottom: 1px solid var(--white);
   padding: 0 1rem;
+  color: var(--white);
   h1 {
     font-size: 10rem;
     margin: 0;
@@ -30,19 +31,20 @@ export default function Header() {
         <a>
           <h1>foto.</h1>
           <h1>SHOPPE.</h1>
+          {session && (
+            <p>Heyo {session.user.name}! Click the banner to get started!</p>
+          )}
+          {!session && <p>Log In with Git to Create Content</p>}
         </a>
       </Link>
       {!session && (
         <LoginStyled onClick={() => signIn("github")}>
-          <h3 className="inner">Connect with Git to Create Content</h3>
+          <h3 className="inner">Log In</h3>
         </LoginStyled>
       )}
       {session && (
         <LoginStyled onClick={() => signOut()}>
-          <div className="inner">
-            <p>Heyo {session.user.name}! Click the banner to get started!</p>
-            <h3>Log Out</h3>
-          </div>
+          <h3 className="inner">Log Out</h3>
         </LoginStyled>
       )}
     </HeaderStyles>

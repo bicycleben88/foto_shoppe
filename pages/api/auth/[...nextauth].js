@@ -2,8 +2,6 @@ import NextAuth from "next-auth";
 import { PrismaClient } from "@prisma/client";
 import Providers from "next-auth/providers";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-let url = require("url");
-let logInAttempts = 0;
 
 const { GIT_ID, GIT_SECRET, FB_ID, FB_SECRET } = process.env;
 
